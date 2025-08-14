@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burgess Foundation | Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --maroon: #800020;
+      --maroon-light: #a04060;
+      --maroon-dark: #600018;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-grey: #e0e0e0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #333;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('backgrounds/homepage.JPEG') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    a {
+      color: var(--maroon);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--maroon-light);
+    }
+
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* SLIDESHOW HERO SECTION */
+    .slideshow-hero {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      color: var(--white);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0 2rem;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      max-width: 800px;
+    }
+
+    /* UPDATED HORIZONTAL ACCORDION SECTION */
+    .horizontal-accordion-section {
+      padding: 4rem 0;
+      text-align: center;
+      background-color: var(--off-white);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .horizontal-accordion-container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+    }
+
+    .horizontal-accordion {
+      display: flex;
+      height: 500px;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      align-items: center;
+      gap: 10px;
+      scroll-behavior: smooth;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .horizontal-accordion::-webkit-scrollbar {
+      display: none;
+    }
+
+    .accordion-item {
+      position: relative;
+      flex: 0 0 20%;
+      height: 80%;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      filter: brightness(0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      min-width: 200px;
+    }
+
+    .accordion-item.active, 
+    .accordion-item:hover {
+      flex: 0 0 60%;
+      height: 90%;
+      filter: brightness(1);
+    }
+
+    .image-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .accordion-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .accordion-item.active img, 
+    .accordion-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* SIMPLIFIED CONTENT - ONLY LEARN MORE LINK */
+    .accordion-content {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .accordion-item.active .accordion-content,
+    .accordion-item:hover .accordion-content {
+      opacity: 1;
+    }
+
+    .accordion-button {
+      display: inline-block;
+      padding: 8px 16px;
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .accordion-button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ENHANCED NAVIGATION ARROWS */
+    .accordion-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .accordion-nav button {
+      pointer-events: all;
+      background: var(--maroon);
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .accordion-nav button:hover {
+      background: var(--maroon-dark);
+      transform: scale(1.1);
+    }
+
+    .accordion-nav i {
+      font-size: 1.8rem;
+      color: var(--white);
+    }
+
+    .accordion-nav button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .accordion-nav button:disabled:hover {
+      transform: none;
+      background: var(--maroon);
+    }
+
+    /* Rest of your existing CSS */
+    .logo-social {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-social img {
+      height: 50px;
+    }
+
+    .logo-social h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-icons a {
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    section {
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--maroon);
+    }
+
+    section p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .feature-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      background-color: var(--off-white);
+    }
+
+    .feature-card {
+      width: 280px;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      background: var(--white);
+      border: 2px solid var(--maroon);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .feature-card h3 {
+      color: var(--maroon);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .feature-icon i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--maroon);
+    }
+
+    .counter-section {
+      background-color: var(--off-white);
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .counter-item {
+      width: 200px;
+      margin: 1rem;
+      display: inline-block;
+    }
+
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--maroon);
+      margin: 0.5rem 0;
+    }
+
+    .counter-icon i {
+      font-size: 2.5rem;
+      color: var(--maroon);
+    }
+
+    /* PROGRAMS SECTION STYLES */
+    .programs-section {
+      padding: 4rem 2rem;
+      background-color: var(--white);
+      text-align: center;
+    }
+
+    .programs-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .program-card {
+      flex: 1;
+      min-width: 300px;
+      max-width: 350px;
+      background-color: var(--off-white);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--maroon);
+      text-align: left;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .program-card h3 {
+      color: var(--maroon);
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .program-card p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-icon {
+      font-size: 2.5rem;
+      color: var(--maroon);
+      margin-bottom: 1rem;
+    }
+
+    .programs-btn-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .programs-btn {
+      display: inline-block;
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .programs-btn:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    /* VIDEO SECTION STYLES */
+    .video-section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-container video {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* PARTNERS SECTION */
+    .partners-section {
+      background-color: var(--off-white);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .partners-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    .partner-logo {
+      height: 100px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: all 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0%);
+    }
+
+    /* FOOTER STYLES */
+    .main-footer {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 3rem 2rem;
+      position: relative;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--white);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--light-grey);
+      padding-left: 5px;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* FOOTER PHOTO COLLAGE */
+    .footer-collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      gap: 5px;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 1rem;
+    }
+
+    .footer-collage img {
+      width: 100%;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 3px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-collage img:hover {
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    .footer-content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-left {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-middle {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-right {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .home-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-right ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      .hero-content h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+      
+      .slideshow-hero {
+        height: 60vh;
+      }
+      
+      .partner-logo {
+        height: 80px;
+      }
+      
+      .program-card {
+        min-width: 100%;
+      }
+
+      .footer-column {
+        min-width: 100%;
+      }
+
+      .horizontal-accordion {
+        flex-direction: column;
+        height: auto;
+        gap: 5px;
+      }
+      
+      .accordion-item {
+        height: 250px;
+        width: 90%;
+        flex: 1;
+        min-width: auto;
+      }
+      
+      .accordion-item.active,
+      .accordion-item:hover {
+        height: 300px;
+        width: 90%;
+        flex: 1;
+      }
+
+      .accordion-content {
+        opacity: 1;
+      }
+
+      .footer-collage {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        max-width: 100%;
+      }
+
+      .footer-collage img {
+        height: 50px;
+      }
+
+      .footer-content-wrapper {
+        flex-direction: column;
+      }
+      
+      .accordion-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="home-header">
+    <div class="logo-social">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo">
+      <div>
+        <h1>Burgess Foundation</h1>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html" class="donate-btn">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SLIDESHOW HERO SECTION -->
+  <div class="slideshow-hero">
+    <div class="slide active" style="background-image: url('imagessss/1.jpg');"></div>
+    <div class="slide" style="background-image: url('imagessss/2.jpeg');"></div>
+    <div class="slide" style="background-image: url('imagessss/3.JPEG');"></div>
+    
+    <div class="hero-content">
+      <h2>Together We Can Make a Difference</h2>
+      <p>Empowering communities and transforming lives.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>Welcome to Burgess Foundation</h2>
+    <p>
+      The Burgess Foundation is a nonprofit community-based organization focused on improving the lives of children, youth, and women in Uganda. We create sustainable change through education, health, skills development, and economic empowerment programs.
+    </p>
+    <p>
+      Learn more about our <a href="programs.html">programs</a>, see what <a href="events.html">events</a> we're holding, and read our latest <a href="news.html">news</a>.
+    </p>
+  </section>
+
+  <section class="feature-section">
+    <div class="feature-card">
+      <a href="careers.html" style="text-decoration: none;">
+        <div class="feature-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Working at Burgess Foundation</h3>
+        <p>Join our passionate team dedicated to philanthropy and sustainable development.</p>
+      </a>
+    </div>
+
+    <div class="feature-card">
+      <a href="fundraisers.html" style="text-decoration: none;">
+        <div class="feature-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <h3>Fundraisers</h3>
+        <p>We work in partnership with communities and institutions by fundraising towards empowerment.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="counter-section">
+    <h2>Our Impact in Numbers</h2>
+    <div>
+      <div class="counter-item">
+        <div class="counter-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="counter-number" data-target="360000">0</div>
+        <div>Education</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-icon"><i class="fas fa-female"></i></div>
+        <div class="counter-number" data-target="509">0</div>
+        <div>Women Health</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-icon"><i class="fas fa-hand-holding-water"></i></div>
+        <div class="counter-number" data-target="215">0</div>
+        <div>Menstrual Hygiene</div>
+      </div>
+      
+      <div class="counter-item">
+        <div class="counter-icon"><i class="fas fa-hands-helping"></i></div>
+        <div class="counter-number" data-target="242">0</div>
+        <div>Livelihood Support</div>
+      </div>
+    </div>
+  </section>
+
+ <!-- PROGRAMS SECTION AS CARDS -->
+<section class="programs-section">
+  <h2>Our Programs</h2>
+  <div class="programs-container">
+    <div class="program-card">
+      <div class="program-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3>Support To Education</h3>
+      <p>Education is key in breaking the cycle of generational poverty. Education provides a sense of normalcy, safety and the knowledge needed to build a more stable, peaceful future. We partner with top performing schools to meet the educational needs of children.</p>
+    </div>
+    
+    <div class="program-card">
+      <div class="program-icon">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <h3>Maternal and Child Health</h3>
+      <p>In rural Uganda, basic medical care is often poor the difference between life and death. Poor nutrition, diarrhea, HIV/AIDS, malaria, anemia, and complications during childbirth are a few examples. Burgess Foundation works with health workers to strengthen the public health access alongside community health workers, health volunteers, medical students, and others.</p>
+    </div>
+    
+    <div class="program-card">
+      <div class="program-icon">
+        <i class="fas fa-hand-holding-water"></i>
+      </div>
+      <h3>Water, Sanitation and Hygiene (WASH)</h3>
+      <p>61% of Ugandans lack access to safe drinking water. Access to clean water is essential to the health and well-being of every community. Drinking contaminated water often brings illness and death. In order to address clean water challenges in rural communities.</p>
+    </div>
+  </div>
+  
+  <div class="programs-btn-container">
+    <a href="programs.html" class="programs-btn">View All Programs</a>
+  </div>
+</section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section">
+    <h2>Our Story</h2>
+    <div class="video-container">
+      <video controls poster="imagessss/4.png">
+        <source src="about us video/BFU intro video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <!-- SIMPLIFIED HORIZONTAL ACCORDION SECTION -->
+  <section class="horizontal-accordion-section">
+    <h2 class="section-title">Our Key Focus Areas</h2>
+    <p class="section-subtitle">See our programs in action through these impactful images</p>
+    
+    <div class="horizontal-accordion-container">
+      <div class="horizontal-accordion">
+       
+        <div class="accordion-item active">
+          <div class="image-container">
+            <img src="our work/CLS-419.JPEG" alt="Education Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#education" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+        
+        
+        <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/CLS-609.JPEG" alt="Maternal Health">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#health" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+        
+        
+        <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/F3pQYD0W4AA2dED.jpg" alt="Safe Water Access">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#water" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+        
+        
+        <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/FvmK48gWcAEQgIh.jpg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/IMG-20230607-WA0006.jpg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/IMG-20240714-WA0066.jpg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2021-05-24 at 15.27.06.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2021-06-28 at 13.10.32.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2021-10-08 at 09.43.08.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         <div class="accordion-item">
+          <div class="image-container">
+            <img src="our work/WhatsApp Image 2022-10-12 at 09.17.36.jpeg" alt="Additional Program">
+          </div>
+          <div class="accordion-content">
+            <a href="programs.html#community" class="accordion-button">Learn More</a>
+          </div>
+        </div>
+
+         
+        
+      </div>
+      
+      <!-- Enhanced Navigation arrows -->
+      <div class="accordion-nav">
+        <button id="prev-slide" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+        <button id="next-slide" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS SECTION -->
+  <section class="partners-section">
+    <h2>PARTNERS IN DEVELOPMENT</h2>
+    <div class="partners-container">
+      <img src="partners/download-1.png" alt="East Africa Philanthropy Network" class="partner-logo">
+      <img src="partners/download.png" alt="GlobalGiving" class="partner-logo">
+      <img src="partners/IjxoDVCp_400x400.jpg" alt="Partner 3" class="partner-logo">
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-left">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column footer-middle">
+        <h3>Photo Gallery</h3>
+        <div class="footer-collage">
+          <img src="our work/WhatsApp Image 2022-10-12 at 09.17.36.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2022-07-25 at 1.31.21 PM.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-11-24 at 13.09.54.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-10-08 at 09.43.08.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-08-17 at 10.54.35.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-08-12 at 11.10.04 (1).jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-08-11 at 16.30.52.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-06-28 at 13.10.32.jpeg" alt="Foundation work">
+          <img src="our work/WhatsApp Image 2021-05-24 at 15.27.06.jpeg" alt="Foundation work">
+          <img src="our work/IMG-20240714-WA0066.jpg" alt="Foundation work">
+          <img src="our work/IMG-20230607-WA0006.jpg" alt="Foundation work">
+          <img src="our work/FvmK48gWcAEQgIh.jpg" alt="Foundation work">
+        </div>
+      </div>
+      
+      <div class="footer-column footer-right">
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Lilies Leaf Chambers,Ground Floor,Wing 1B Plot 2B3,Kyambogo Drive-Off Martyr's Way   Minister's Village,Ntinda,Kampala-Uganda</p>
+          <p><i class="fas fa-envelope"></i> P.O Box 73474, Clock Tower, Kampala</p>
+          <p><i class="fas fa-phone"></i> +256 703 767 865</p>
+          <p><i class="fas fa-phone"></i> +256 764 846 061</p>
+          <p><i class="fas fa-envelope"></i> info@burgessfoundationug.org</p>
+          <p><i class="fas fa-globe"></i> www.burgessfoundationug.org</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Slideshow functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+    
+    // Change slide every 5 seconds
+    setInterval(nextSlide, 5000);
+    
+    // Counter animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter-number');
+      const speed = 400; // The lower the faster
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if(count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 1);
+        } else {
+          counter.innerText = target.toLocaleString(); // Adds commas for large numbers
+        }
+        
+        function updateCount() {
+          const count = +counter.innerText.replace(/,/g, ''); // Remove commas for calculation
+          if(count < target) {
+            counter.innerText = Math.ceil(count + increment).toLocaleString();
+            setTimeout(updateCount, 1);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        }
+      });
+      
+      // Enhanced Accordion slider functionality
+      const accordionItems = document.querySelectorAll('.accordion-item');
+      const prevBtn = document.getElementById('prev-slide');
+      const nextBtn = document.getElementById('next-slide');
+      let currentAccordion = 0;
+      
+      function updateAccordion() {
+        accordionItems.forEach((item, index) => {
+          if(index === currentAccordion) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+        
+        // Update arrow states
+        prevBtn.disabled = currentAccordion === 0;
+        nextBtn.disabled = currentAccordion === accordionItems.length - 1;
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        currentAccordion = Math.max(0, currentAccordion - 1);
+        updateAccordion();
+        scrollToCurrentItem();
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        currentAccordion = Math.min(accordionItems.length - 1, currentAccordion + 1);
+        updateAccordion();
+        scrollToCurrentItem();
+      });
+      
+      function scrollToCurrentItem() {
+        const container = document.querySelector('.horizontal-accordion');
+        const item = accordionItems[currentAccordion];
+        container.scrollTo({
+          left: item.offsetLeft - container.offsetLeft - (container.offsetWidth - item.offsetWidth) / 2,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Auto-rotate accordion items
+      let autoRotateInterval = setInterval(() => {
+        currentAccordion = (currentAccordion + 1) % accordionItems.length;
+        updateAccordion();
+        scrollToCurrentItem();
+      }, 5000);
+      
+      // Pause auto-rotation on hover
+      const accordionContainer = document.querySelector('.horizontal-accordion-container');
+      accordionContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoRotateInterval);
+      });
+      
+      accordionContainer.addEventListener('mouseleave', () => {
+        autoRotateInterval = setInterval(() => {
+          currentAccordion = (currentAccordion + 1) % accordionItems.length;
+          updateAccordion();
+          scrollToCurrentItem();
+        }, 5000);
+      });
+      
+      // Hover functionality for accordion items
+      accordionItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          const index = Array.from(accordionItems).indexOf(item);
+          currentAccordion = index;
+          updateAccordion();
+        });
+      });
+      
+      // Initialize
+      updateAccordion();
+    });
+  </script>
+</body>
+</html>

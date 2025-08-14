@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Burgess Foundation</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="logo.png" type="image/png"/>
+  <style>
+    /* Additional styles specific to contact page */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/360_F_273608614_a5a5WP7QfxwSLbnC6O5fHYSJhI5hFlcf.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+    
+    main {
+      flex: 1;
+    }
+    
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      margin-right: 30px;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .contact-heading {
+      color: #800000; /* Maroon */
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .contact-subheading {
+      color: #333;
+      margin-bottom: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .form-group textarea {
+      height: 150px;
+    }
+    
+    .submit-btn {
+      background-color: #800000; /* Maroon */
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: #600000; /* Darker maroon */
+    }
+    
+    .map-container {
+      margin-top: 40px;
+      height: 400px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      margin-bottom: 40px;
+    }
+    
+    .partner-link {
+      color: #800000;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    
+    .partner-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Footer Styles to match other pages */
+    footer {
+      background-color: #800000;
+      color: white;
+      padding: 40px 0 0;
+      font-family: 'Arial', sans-serif;
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 30px;
+      padding: 0 15px;
+    }
+    
+    .footer-section h3 {
+      color: white;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background-color: white;
+    }
+    
+    .footer-section p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #f0f0f0;
+      text-decoration: underline;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    
+    .social-icons a:hover {
+      color: #f0f0f0;
+    }
+    
+    .footer-bottom {
+      background-color: #600000;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 30px;
+    }
+    
+    .footer-bottom p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-section {
+        flex: 100%;
+        text-align: center;
+      }
+      
+      .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Unified Header (Logo + Nav) -->
+  <header class="simple-header">
+    <div class="logo-left">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo">
+      <h1>Burgess Foundation</h1>
+    </div>
+
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a class="donate-btn" href="donate.html">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
+  <!-- Hero -->
+  <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/360_F_273608614_a5a5WP7QfxwSLbnC6O5fHYSJhI5hFlcf.jpg'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
+    <h2 style="font-size: 3rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">CONTACT US</h2>
+    <p style="font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">We'd love to hear from you</p>
+  </section>
+
+  <!-- Contact Content -->
+  <main>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h3 class="contact-heading">SEND US A MESSAGE</h3>
+        <a href="#" class="partner-link">Become A Partner--</a>
+        
+        <form action="https://formspree.io/f/movlqgzy" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required />
+          </div>
+          
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email Address" required />
+          </div>
+          
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Phone Number" required />
+          </div>
+          
+          <div class="form-group">
+            <select name="subject" required>
+              <option value="" disabled selected>-- Select One --</option>
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Donation">Donation</option>
+              <option value="Volunteer">Volunteer Opportunity</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <textarea name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <!-- Optional anti-spam field -->
+          <input type="text" name="_gotcha" style="display:none">
+
+          <!-- Redirect after success (optional) -->
+          <input type="hidden" name="_next" value="thankyou.html">
+
+          <button type="submit" class="submit-btn">SEND MESSAGE</button>
+        </form>
+      </div>
+    
+      <div class="contact-info">
+        <h3 class="contact-heading">OUR INFORMATION</h3>
+        <p><strong>Address:</strong><br>
+        Lilies Leaf Chambers,Ground Floor,Wing 1B Plot 2B3,Kyambogo Drive-Off Martyr's Way Minister's Village,Ntinda,Kampala-Uganda<br>
+        Kampala, Uganda</p>
+        
+        <p><strong>Phone:</strong><br>
+        +256 703 767 865<br>
+        +256 764 846 061</p>
+        
+        <p><strong>Email:</strong><br>
+        info@burgessfoundationug.org</p>
+        
+        
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-container">
+      <!-- Replace with your actual map embed code -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.744871300631!2d32.61745597568237!3d0.3476600639758527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbbd4ded7bbe1%3A0xa84b742646c03d40!2sLilies%20Leaf%20Chambers!5e0!3m2!1sen!2sug!4v1755150666553!5m2!1sen!2sug" width="2100" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy">
+      </iframe>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo" style="max-width: 150px; margin-bottom: 15px;">
+        <p>Committed to creating lasting change in our communities through education, healthcare, and empowerment initiatives.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <p>Lilies Leaf Chambers,Ground Floor,Wing 1B Plot 2B3,Kyambogo Drive-Off Martyr's Way Minister's Village,Ntinda,Kampala-Uganda<br>
+        Kampala, Uganda<br>
+        Phone: +256 703 767 865<br>
+        +256 764 846 061<br>
+        Email: info@burgessfoundationug.org</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Burgess Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

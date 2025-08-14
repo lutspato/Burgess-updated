@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | Burgess Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --maroon: #800020;
+      --maroon-light: #a04060;
+      --maroon-dark: #600018;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-grey: #e0e0e0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('backgrounds/events.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--maroon);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--maroon-light);
+    }
+
+    /* Header Styles */
+    .simple-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-left img {
+      height: 50px;
+    }
+
+    .logo-left h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 30vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 2rem;
+      background-color: rgba(128, 0, 32, 0.7);
+      color: white;
+    }
+    
+    .hero-content {
+      text-align: center;
+      max-width: 1000px;
+      padding: 2rem;
+      z-index: 1;
+    }
+    
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Content Sections */
+    section {
+      padding: 3rem;
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto 3rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--maroon);
+      text-align: center;
+    }
+
+    /* Calendar Styles */
+    .calendar-container {
+      margin: 2rem auto;
+      width: 100%;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .calendar-title {
+      font-size: 1.8rem;
+      color: var(--maroon);
+      font-weight: bold;
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .calendar-nav button {
+      background-color: var(--maroon);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .calendar-nav button:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .calendar th {
+      background-color: var(--maroon);
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .calendar td {
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid var(--light-grey);
+      height: 100px;
+      vertical-align: top;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .calendar td:hover {
+      background-color: var(--off-white);
+    }
+
+    .calendar-day {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .other-month {
+      color: #aaa;
+      background-color: #f5f5f5;
+    }
+
+    .today {
+      background-color: rgba(128, 0, 32, 0.1);
+      border: 2px solid var(--maroon);
+    }
+
+    .event-marker {
+      background-color: var(--maroon);
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 0.2rem 0;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .event-marker:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    /* Admin Controls */
+    .admin-controls {
+      margin-top: 3rem;
+      padding: 2rem;
+      background-color: var(--off-white);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: none;
+    }
+
+    .admin-controls h3 {
+      color: var(--maroon);
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--light-grey);
+      border-radius: 4px;
+      font-size: 1.1rem;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .btn-primary {
+      background-color: var(--maroon);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    .btn-secondary {
+      background-color: var(--light-grey);
+      color: #333;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      margin: 10% auto;
+      padding: 2.5rem;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 700px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      color: var(--maroon);
+      cursor: pointer;
+    }
+
+    /* Footer styles */
+    .main-footer {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 3rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--white);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--light-grey);
+      padding-left: 5px;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .simple-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-right ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero-section {
+        height: 25vh;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 2rem 1.5rem;
+        width: 95%;
+      }
+      
+      .calendar th {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+      
+      .calendar td {
+        padding: 1rem;
+        height: 80px;
+        font-size: 1rem;
+      }
+      
+      .event-marker {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.4rem;
+      }
+      
+      .footer-column {
+        min-width: 100%;
+      }
+      
+      .modal-content {
+        width: 90%;
+        padding: 1.5rem;
+      }
+      
+      .close-modal {
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+      }
+      .event-container {
+      position: relative;
+    }
+    
+    .delete-event {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      display: none;
+      z-index: 2;
+    }
+    
+    .event-marker:hover .delete-event {
+      display: block;
+    }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="simple-header">
+    <div class="logo-left">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo">
+      <h1>Burgess Foundation</h1>
+    </div>
+
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html" class="donate-btn">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Our Events</h1>
+      <p>We regularly organize community outreach programs, training workshops, and special events to empower our communities.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>Event Calendar</h2>
+    
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <div class="calendar-title" id="calendar-title">August 2025</div>
+        <div class="calendar-nav">
+          <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+          <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+      
+      <table class="calendar" id="calendar">
+        <thead>
+          <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-body">
+          <!-- Calendar will be generated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="admin-controls" id="admin-controls">
+      <h3>Admin: Add New Event</h3>
+      <form id="event-form">
+        <div class="form-group">
+          <label for="event-date">Date:</label>
+          <input type="date" id="event-date" required>
+        </div>
+        <div class="form-group">
+          <label for="event-title">Title:</label>
+          <input type="text" id="event-title" required>
+        </div>
+        <div class="form-group">
+          <label for="event-description">Description:</label>
+          <textarea id="event-description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="event-location">Location:</label>
+          <input type="text" id="event-location">
+        </div>
+        <div class="form-group">
+          <label for="event-time">Time:</label>
+          <input type="text" id="event-time" placeholder="e.g. 9:00 AM - 3:00 PM">
+        </div>
+        <div class="form-actions">
+          <button type="reset" class="btn btn-secondary">Clear</button>
+          <button type="submit" class="btn btn-primary">Add Event</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="modal" id="event-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3 id="modal-event-title">Event Title</h3>
+      <div class="event-date" id="modal-event-date">Date</div>
+      <p id="modal-event-description">Event description goes here.</p>
+      <p><strong>Location:</strong> <span id="modal-event-location">To be announced</span></p>
+      <p><strong>Time:</strong> <span id="modal-event-time">9:00 AM - 3:00 PM</span></p>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Lilies Leaf Chambers, Ground Floor, Wing 1B Plot 2B3, Kyambogo Drive-Off Martyr's Way, Minister's Village, Ntinda, Kampala-Uganda</p>
+          <p><i class="fas fa-envelope"></i> P.O Box 73474, Clock Tower, Kampala</p>
+          <p><i class="fas fa-phone"></i> +256 703 767 865</p>
+          <p><i class="fas fa-phone"></i> +256 764 846 061</p>
+          <p><i class="fas fa-envelope"></i> info@burgessfoundationug.org</p>
+          <p><i class="fas fa-globe"></i> www.burgessfoundationug.org</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Calendar functionality
+    let currentDate = new Date(2025, 7, 1); // August 2025 (month is 0-indexed)
+    const calendarTitle = document.getElementById('calendar-title');
+    const calendarBody = document.getElementById('calendar-body');
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+    const today = new Date();
+    const eventForm = document.getElementById('event-form');
+    const adminControls = document.getElementById('admin-controls');
+    
+    // Check if user is admin (this would normally be done server-side)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.has('admin') || localStorage.getItem('isAdmin') === 'true';
+    
+    // Show admin controls if user is admin
+    if (isAdmin) {
+      adminControls.style.display = 'block';
+    }
+    
+    // Load events from localStorage or initialize empty object
+    let events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
+
+    // Generate calendar
+    // Generate calendar
+    function generateCalendar() {
+      // Clear previous calendar
+      calendarBody.innerHTML = '';
+      
+      // Set calendar title
+      calendarTitle.textContent = new Intl.DateTimeFormat('en-US', { 
+        month: 'long', 
+        year: 'numeric' 
+      }).format(currentDate);
+      
+      // Get first day of month and total days
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDay = firstDay.getDay();
+      
+      // Create calendar rows
+      let date = 1;
+      for (let i = 0; i < 6; i++) {
+        // Stop if we've gone past the last day of the month
+        if (date > daysInMonth) break;
+        
+        // Create row
+        const row = document.createElement('tr');
+        
+        // Create cells
+        for (let j = 0; j < 7; j++) {
+          const cell = document.createElement('td');
+          
+          if (i === 0 && j < startingDay) {
+            // Previous month days
+            const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+            const prevDate = prevMonthLastDay - (startingDay - j - 1);
+            cell.innerHTML = `<div class="calendar-day other-month">${prevDate}</div>`;
+            cell.classList.add('other-month');
+          } else if (date > daysInMonth) {
+            // Next month days
+            const nextDate = date - daysInMonth;
+            cell.innerHTML = `<div class="calendar-day other-month">${nextDate}</div>`;
+            cell.classList.add('other-month');
+            date++;
+          } else {
+            // Current month days
+            const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), date);
+            const dateString = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${date}`;
+            
+            // Check if today
+            if (date === today.getDate() && 
+                currentDate.getMonth() === today.getMonth() && 
+                currentDate.getFullYear() === today.getFullYear()) {
+              cell.classList.add('today');
+            }
+            
+            // Add date
+            cell.innerHTML = `<div class="calendar-day">${date}</div>`;
+            
+            // Add events if any
+            if (events[dateString]) {
+              const eventContainer = document.createElement('div');
+              eventContainer.className = 'event-container';
+              
+              const eventMarker = document.createElement('div');
+              eventMarker.className = 'event-marker';
+              eventMarker.textContent = events[dateString].title;
+              eventMarker.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showEventModal(events[dateString]);
+              });
+              
+              // Add delete button (only for admin)
+              if (isAdmin) {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-event';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  deleteEvent(dateString);
+                });
+                eventMarker.appendChild(deleteBtn);
+              }
+              
+              eventContainer.appendChild(eventMarker);
+              cell.appendChild(eventContainer);
+            }
+            
+            // Add click event to set date in form (for admin only)
+            if (isAdmin) {
+              cell.addEventListener('click', () => {
+                // Set the date in the form when a cell is clicked
+                const year = currentDate.getFullYear();
+                const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.toString().padStart(2, '0');
+                document.getElementById('event-date').value = `${year}-${month}-${day}`;
+              });
+            }
+            
+            date++;
+          }
+          
+          row.appendChild(cell);
+        }
+        
+        calendarBody.appendChild(row);
+      }
+    }
+    
+    // Add this new function to delete events
+    function deleteEvent(dateString) {
+      if (confirm('Are you sure you want to delete this event?')) {
+        delete events[dateString];
+        localStorage.setItem('calendarEvents', JSON.stringify(events));
+        generateCalendar();
+      }
+    }
+    
+      
+    
+    
+    // Event modal functionality
+    const modal = document.getElementById('event-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    function showEventModal(event) {
+      document.getElementById('modal-event-title').textContent = event.title;
+      document.getElementById('modal-event-date').textContent = new Intl.DateTimeFormat('en-US', { 
+        weekday: 'long', 
+        month: 'long', 
+        day: 'numeric', 
+        year: 'numeric' 
+      }).format(new Date(event.date));
+      document.getElementById('modal-event-description').textContent = event.description;
+      document.getElementById('modal-event-location').textContent = event.location || 'To be announced';
+      document.getElementById('modal-event-time').textContent = event.time || 'Time not specified';
+      modal.style.display = 'block';
+    }
+    
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Month navigation
+    prevMonthBtn.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      generateCalendar();
+    });
+    
+    nextMonthBtn.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      generateCalendar();
+    });
+    
+    // Add event form submission (admin only)
+    if (isAdmin) {
+      eventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const eventDate = document.getElementById('event-date').value;
+        const eventTitle = document.getElementById('event-title').value;
+        const eventDescription = document.getElementById('event-description').value;
+        const eventLocation = document.getElementById('event-location').value;
+        const eventTime = document.getElementById('event-time').value;
+        
+        // Format the date string to match our events object key format (YYYY-M-D)
+        const dateParts = eventDate.split('-');
+        const formattedDate = `${dateParts[0]}-${parseInt(dateParts[1])}-${parseInt(dateParts[2])}`;
+        
+        // Add the event to our events object
+        events[formattedDate] = {
+          title: eventTitle,
+          description: eventDescription,
+          location: eventLocation,
+          time: eventTime,
+          date: formattedDate
+        };
+        
+        // Save to localStorage
+        localStorage.setItem('calendarEvents', JSON.stringify(events));
+        
+        // Reset the form
+        eventForm.reset();
+        
+        // Regenerate the calendar to show the new event
+        generateCalendar();
+      });
+    }
+    
+    // Initialize calendar
+    generateCalendar();
+  </script>
+</body>
+</html>

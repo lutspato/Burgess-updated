@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Burgess Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --maroon: #800020;
+      --maroon-light: #a04060;
+      --maroon-dark: #600018;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-grey: #e0e0e0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('backgrounds/about us.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--maroon);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--maroon-light);
+    }
+
+    .simple-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-left img {
+      height: 50px;
+    }
+
+    .logo-left h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    /* Hero image section */
+    .hero-image {
+      width: 100%;
+      height: 60vh;
+      background-image: url('imagessss/1.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    /* Content sections */
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--maroon);
+      text-align: center;
+    }
+
+    section h3 {
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      color: var(--maroon);
+    }
+
+    section p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-vision {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .mission-vision div {
+      flex: 1;
+      padding: 1.5rem;
+      background-color: var(--off-white);
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .mission-vision div:hover {
+      transform: translateY(-5px);
+    }
+
+    .mission-vision i {
+      font-size: 2.5rem;
+      color: var(--maroon);
+      margin-bottom: 1rem;
+    }
+
+    .mission-vision h4 {
+      font-size: 1.3rem;
+      color: var(--maroon);
+      margin-top: 0;
+    }
+
+    .values-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .value-card {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      min-width: 200px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .value-card i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .team-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--maroon);
+    }
+
+    .team-info {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card h4 {
+      color: var(--maroon);
+      margin: 0.3rem 0;
+      font-size: 1.2rem;
+    }
+
+    .team-card p {
+      color: #666;
+      font-style: italic;
+      margin: 0 0 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .team-card:hover .team-social {
+      opacity: 1;
+    }
+
+    .team-social a {
+      color: var(--maroon);
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      background-color: var(--off-white);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-social a:hover {
+      color: var(--white);
+      background-color: var(--maroon);
+      transform: translateY(-2px);
+    }
+
+    /* FAQ Section Styles */
+    .faq-container {
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--light-grey);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      color: var(--maroon);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: var(--off-white);
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: #f0f0f0;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-answer.show {
+      padding: 1rem;
+      max-height: 500px;
+    }
+
+    /* Footer styles */
+    .main-footer {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 3rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--white);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--light-grey);
+      padding-left: 5px;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .simple-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-right ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      .mission-vision {
+        flex-direction: column;
+      }
+      
+      .hero-image {
+        height: 50vh;
+      }
+      
+      .footer-column {
+        min-width: 100%;
+      }
+      
+      .team-card {
+        width: 100%;
+      }
+      
+      .team-image {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="simple-header">
+    <div class="logo-left">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo" />
+      <h1>Burgess Foundation</h1>
+    </div>
+
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="donate.html" class="donate-btn">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero-image">
+    <div class="hero-content">
+      <h2>About Burgess Foundation</h2>
+      <p>Empowering communities and transforming lives in Uganda</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>ABOUT BURGESS FOUNDATION</h2>
+    
+    <h3>Introduction</h3>
+    <p>Burgess Foundation (BF) is a Ugandan NGO that started in January 2021 licensed to operate in Mitooma, Kyenjojo, Sheema and Kampala Districts.</p>
+    
+    <div class="mission-vision">
+      <div>
+        <i class="fas fa-eye"></i>
+        <h4>The Vision</h4>
+        <p>To see lives of the vulnerable persons and families empowered and transformed.</p>
+      </div>
+      <div>
+        <i class="fas fa-bullseye"></i>
+        <h4>The Mission</h4>
+        <p>To enhance sustainable livelihoods through improved maternal health, girl child education and elderly care.</p>
+      </div>
+    </div>
+    
+    <h3>OUR VALUES</h3>
+    <div class="values-container">
+      <div class="value-card">
+        <i class="fas fa-shield-alt"></i>
+        <div>Integrity</div>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-balance-scale"></i>
+        <div>Equality</div>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-glasses"></i>
+        <div>Transparency</div>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-hands-helping"></i>
+        <div>Voluntarism</div>
+      </div>
+    </div>
+    
+    <h3>Burgess Foundation Board</h3>
+    <div class="team-container">
+      <div class="team-card">
+        <img src="team members/chair_2025-07-29_08-48-55.jpg" alt="Naturinda Eliab" class="team-image">
+        <div class="team-info">
+          <h4>Mrs. Rwobusheru Barbara</h4>
+          <p>Board Chair</p>
+          <div class="team-social">
+            <a href="https://linkedin.com/in/naturinda-eliab" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/naturinda.eliab" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/naturinda.eliab" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/naturinda_eliab" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="team members/IMG-Stella-WA0020.jpg" alt="Stella Kyobutungi" class="team-image">
+        <div class="team-info">
+          <h4>Stella Kyobutungi</h4>
+          <p>Board Secretary / CEO</p>
+          <div class="team-social">
+            <a href="https://www.linkedin.com/in/kyobutungi-stella-87675799/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/Kyobutungi Stella" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/Kyobutungi Stella" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Kyobu_ella" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="team members/fiona agaba_2025-07-29_08-46-49.jpg" alt="Senorita Faith Nabafu" class="team-image">
+        <div class="team-info">
+          <h4>Mrs. Agaba Fiona </h4>
+          <p>Board Treasurer</p>
+          <div class="team-social">
+            <a href="https://linkedin.com/in/senorita-faith-nabafu" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/senorita.faith.nabafu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/senorita.faith.nabafu" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/senorita_nabafu" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h3>A Message from Burgess Foundation Board of Directors</h3>
+    <p>Welcome to the Burgess Foundation Website!</p>
+    <p>This organisation was started with passion for philanthropy and a deep understanding that we should be the change we want to see in the world. We are committed to meeting and exceeding the needs and expectations of our stakeholders and ensuring accountability to the communities that we serve. Our approaches in the programs that we conduct should have a ripple effect as well as sustainability. We hope this website provides an insight about our organisation and we encourage you to join us on our journey.</p>
+    
+    <h3>Burgess Foundation Management Team</h3>
+    <div class="team-container">
+      <div class="team-card">
+        <img src="team members/rizik.jpg" alt="Rizik Namugenyi" class="team-image">
+        <div class="team-info">
+          <h4>Rizik Namugenyi</h4>
+          <p>ICT Officer</p>
+          <div class="team-social">
+            <a href="https://www.linkedin.com/in/namugenyi-rizik-73287b100/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/rizik.namugenyi" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/rizik.namugenyi" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/nizramars" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="team members/IMG-Stella-WA0020.jpg" alt="Stella Kyobutungi" class="team-image">
+        <div class="team-info">
+          <h4>Stella Kyobutungi</h4>
+          <p>Founder and CEO</p>
+          <div class="team-social">
+            <a href="https://linkedin.com/in/Kyobutungi Stella" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/Kyobutungi Stella" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/Kyobutungi Stella" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Kyobutungi Stella" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <img src="team members/photo_2025-08-14_19-33-29.jpg" alt="Mr Ocen Tom" class="team-image">
+        <div class="team-info">
+          <h4>Mr Ocen Tom</h4>
+          <p>Programs Manager</p>
+          <div class="team-social">
+            <a href="https://linkedin.com/in/hanisha-katalke" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://facebook.com/hanisha.katalke" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/hanisha.katalke" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/hanisha_katalke" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Have Any Question</h3>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">1. Where is Burgess Foundation located?</div>
+        <div class="faq-answer">
+          <p>Lilies Leaf Chambers, Ground Floor, Wing 1B Plot 2B3, Kyambogo Drive-Off Martyr's Way, Minister's Village, Ntinda, Kampala-Uganda</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">2. What areas does Burgess Foundation cover?</div>
+        <div class="faq-answer">
+          <p>We operate Countrywide</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">3. What are the active fundraisers, how can I donate?</div>
+        <div class="faq-answer">
+          <p>Please visit our Programs page or Contact Us for current fundraising initiatives.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">4. How can I become a volunteer?</div>
+        <div class="faq-answer">
+          <p>We welcome volunteers! Please visit our Contact Us page and fill out the volunteer application form, or send us an email expressing your interest in volunteering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Lilies Leaf Chambers, Ground Floor, Wing 1B Plot 2B3, Kyambogo Drive-Off Martyr's Way, Minister's Village, Ntinda, Kampala-Uganda</p>
+          <p><i class="fas fa-envelope"></i> P.O Box 73474, Clock Tower, Kampala</p>
+          <p><i class="fas fa-phone"></i> +256 703 767 865</p>
+          <p><i class="fas fa-phone"></i> +256 764 846 061</p>
+          <p><i class="fas fa-envelope"></i> info@burgessfoundationug.org</p>
+          <p><i class="fas fa-globe"></i> www.burgessfoundationug.org</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isActive = question.classList.contains('active');
+        
+        // Close all other answers
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== question) {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('show');
+          }
+        });
+        
+        // Toggle current answer
+        if (isActive) {
+          question.classList.remove('active');
+          answer.classList.remove('show');
+        } else {
+          question.classList.add('active');
+          answer.classList.add('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

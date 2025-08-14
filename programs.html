@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programs - Burgess Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" href="logo.png" type="image/png"/>
+  <style>
+    :root {
+      --maroon: #800020;
+      --maroon-light: #a04060;
+      --maroon-dark: #600018;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-grey: #e0e0e0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #333;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('backgrounds/program.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--maroon);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--maroon-light);
+    }
+
+    /* Header Styles */
+    .simple-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-left img {
+      height: 50px;
+    }
+
+    .logo-left h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 2rem;
+      text-align: center;
+      background-color: rgba(128, 0, 32, 0.8);
+      color: var(--white);
+      margin-bottom: 3rem;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Programs Grid */
+    .programs-grid {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .program-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .program-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .full-image-card {
+      position: relative;
+      height: 300px;
+    }
+
+    .full-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 1.5rem;
+      color: var(--white);
+    }
+
+    .overlay-text h3 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    /* Slideshow Program Card */
+    .slideshow-card {
+      position: relative;
+      height: 300px;
+    }
+    
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .slide.active {
+      opacity: 1;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .slide-nav {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+    }
+    
+    .slide-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .slide-dot.active {
+      background-color: var(--white);
+    }
+
+    /* Program Details */
+    .program-details {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .program-section {
+      margin-bottom: 3rem;
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--maroon);
+    }
+
+    .program-section h3 {
+      color: var(--maroon);
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .program-section h4 {
+      color: var(--maroon);
+      font-size: 1.5rem;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .program-section ul {
+      padding-left: 1.5rem;
+    }
+
+    .program-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .program-icon {
+      font-size: 2.5rem;
+      color: var(--maroon);
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .main-footer {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 3rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--white);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column ul li a {
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--light-grey);
+      padding-left: 5px;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .simple-header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-right ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero {
+        padding: 4rem 1rem;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-column {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Unified Header (Logo + Nav) -->
+  <header class="simple-header">
+    <div class="logo-left">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo">
+      <h1>Burgess Foundation</h1>
+    </div>
+
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a class="donate-btn" href="donate.html">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Our Programs</h2>
+    <p>Explore the life-changing programs we run for children, women, and communities at large.</p>
+  </section>
+
+  <!-- Program Cards -->
+  <section class="programs-grid">
+    <div class="program-card full-image-card">
+      <img src="programs/education.jpg" alt="Education Program" />
+      <div class="overlay-text">
+        <h3>Support To Education</h3>
+      </div>
+    </div>
+
+    <div class="program-card full-image-card">
+      <img src="programs/martenal.jpg" alt="Health Outreach" />
+      <div class="overlay-text">
+        <h3>Maternal & Child Health</h3>
+      </div>
+    </div>
+
+    <div class="program-card full-image-card">
+      <img src="programs/sanitation.jpeg" alt="WASH Program" />
+      <div class="overlay-text">
+        <h3>Water, Sanitation & Hygiene</h3>
+      </div>
+    </div>
+
+    <div class="program-card full-image-card">
+      <img src="programs/livelihood.jpeg" alt="Livelihood Program" />
+      <div class="overlay-text">
+        <h3>Livelihood Program</h3>
+      </div>
+    </div>
+
+    <div class="program-card full-image-card">
+      <img src="programs/eldery.JPEG" alt="Elderly Care" />
+      <div class="overlay-text">
+        <h3>Elderly Care Program</h3>
+      </div>
+    </div>
+    
+    <div class="program-card slideshow-card">
+      <!-- Slideshow for Community Development -->
+      <div class="slide active">
+        <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Community Development 1">
+      </div>
+      <div class="slide">
+        <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Community Development 2">
+      </div>
+      <div class="slide">
+        <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Community Development 3">
+      </div>
+     
+      <div class="overlay-text">
+        <h3>Community Development</h3>
+      </div>
+      <div class="slide-nav">
+        <span class="slide-dot active" onclick="currentCommunitySlide(1)"></span>
+        <span class="slide-dot" onclick="currentCommunitySlide(2)"></span>
+        <span class="slide-dot" onclick="currentCommunitySlide(3)"></span>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Details -->
+  <section class="program-details">
+    <div class="program-section">
+      <div class="program-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3>Support To Education</h3>
+      <h4>Rationale</h4>
+      <p>Education is key in breaking the cycle of generational poverty. Education provides a sense of normalcy, safety and the knowledge needed to build a more stable, peaceful future. We partner with top performing schools to meet the educational needs of children.</p>
+      
+      <h4>Our approach</h4>
+      <ul>
+        <li>We improve the school capacity to deliver through building capacity in digital learning. We do this by equipping schools with the much-needed digital learning platforms, so that learners can access learning through the platform</li>
+        <li>We also focus on teacher capacity development to deliver effective, inclusive teaching for learners</li>
+      </ul>
+    </div>
+
+    <div class="program-section">
+      <div class="program-icon">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <h3>Maternal and Child Health</h3>
+      <h4>Rationale</h4>
+      <p>In rural Uganda, basic medical care is often poor the difference between life and death. Poor nutrition, diarrhea, HIV/AIDS, malaria, anemia, and complications during childbirth are a few examples. Burgess Foundation works with health workers to strengthen the public health access alongside community health workers, health volunteers, medical students, and others.</p>
+      
+      <h4>Our Approach</h4>
+      <ul>
+        <li>Medical outreach. Our medical team regularly performs medical Outreaches, bringing healthcare to remote, underserved populations.</li>
+        <li>Capacity strengthening for health facilities to deliver appropriate health services to the vulnerable population</li>
+      </ul>
+    </div>
+
+    <div class="program-section">
+      <div class="program-icon">
+        <i class="fas fa-hand-holding-water"></i>
+      </div>
+      <h3>Water, Sanitation and Hygiene (WASH)</h3>
+      <h4>Rationale</h4>
+      <p>61% of Ugandans lack access to safe drinking water. Access to clean water is essential to the health and well-being of every community. Drinking contaminated water often brings illness and death. In order to address clean water challenges in rural communities.</p>
+      
+      <h4>Approach</h4>
+      <ul>
+        <li>Providing Clean Water. BF supports the construction of boreholes, rehabilitation of broken-down boreholes to provide clean and safe water, and ensure they have access to clean water and the knowledge to protect their long-term health and well-being</li>
+        <li>Sanitation and Hygiene Training; BF trains the community to understand the importance of sanitation, how to maintain both personal and environmental hygiene cleanliness in their personal lives, food preparation and water collection.</li>
+        <li>Menstrual Hygiene Management (MHM) Adequate menstrual hygiene facilities with free hygiene products and timely education for boys and girls on menstrual health are crucial school interventions. Education about periods should start early and include all genders, and this is critical to tackling taboos and stigma, and promoting gender equality. BF works with girls and boys, women and men to break down taboos and barriers when it comes to menstrual health.
+          <ul>
+            <li>We train teachers and health staff to run awareness-raising sessions about periods in both schools and communities</li>
+            <li>We train girls and boys including parents on making reusable menstrual pads (RUMP) using locally available materials</li>
+            <li>Support girls and young women to access quality menstrual products that meets their needs</li>
+            <li>Advocating with schools to construct girl-friendly latrines, with areas to wash and change menstrual pads.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="program-section">
+      <div class="program-icon">
+        <i class="fas fa-hands-helping"></i>
+      </div>
+      <h3>Livelihood Program</h3>
+      <h4>Rationale</h4>
+      <p>Household poverty in Uganda is on the increase and is biting hard many households. This often translates into their inability to provide for the household needs including ability to provide school and health needs for the children.</p>
+      
+      <h4>Approach</h4>
+      <ul>
+        <li>Establishing VSLA groups enables them to come together, members save in the group, members borrow from the groups and invest in their family businesses. This helps in improving household income which supports different areas including school fees for children, health and nutrition needs among others</li>
+        <li>For our food and Nutrition Intervention, we have prioritized nutrition-sensitive agriculture activities to encourage nutrition and women's dietary diversity from the supported households</li>
+      </ul>
+    </div>
+
+    <div class="program-section">
+      <div class="program-icon">
+        <i class="fas fa-user-friends"></i>
+      </div>
+      <h3>Elderly Care Program</h3>
+      <h4>Rationale</h4>
+      <p>Every elderly person deserves to do more than just survive, but also to thrive wherever they are. BF believes that provision for the elderly is central to God's heart for them. Our passion as BF is to see them thrive.</p>
+      
+      <h4>Our strong convictions:</h4>
+      <ul>
+        <li>Elderly people must be cared for by abled people in their lives.</li>
+        <li>No violence against elderly people is justifiable, and all violence against them preventable.</li>
+        <li>Elderly people are valuable to God, and are worthy of dignity and respect, and it is everyone's job to care for them.</li>
+      </ul>
+      
+      <h4>BF's approach</h4>
+      <ul>
+        <li>Provide shelter, food and non-food items for elderly people in vulnerable situations</li>
+        <li>Provide PSS (psychosocial support) for the vulnerable elderly people under our care</li>
+        <li>Ensure and provide regular health checks and health care services for the elderly person under our care</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Lilies Leaf Chambers, Ground Floor, Wing 1B Plot 2B3, Kyambogo Drive-Off Martyr's Way Minister's Village, Ntinda, Kampala-Uganda</p>
+          <p><i class="fas fa-envelope"></i> P.O Box 73474, Clock Tower, Kampala</p>
+          <p><i class="fas fa-phone"></i> +256 703 767 865</p>
+          <p><i class="fas fa-phone"></i> +256 764 846 061</p>
+          <p><i class="fas fa-envelope"></i> info@burgessfoundationug.org</p>
+          <p><i class="fas fa-globe"></i> www.burgessfoundationug.org</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Community Development Slideshow
+    let communitySlideIndex = 0;
+    showCommunitySlides();
+    
+    function showCommunitySlides() {
+      let i;
+      let slides = document.querySelectorAll(".slideshow-card .slide");
+      let dots = document.querySelectorAll(".slideshow-card .slide-dot");
+      
+      for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      
+      communitySlideIndex++;
+      if (communitySlideIndex > slides.length) {communitySlideIndex = 1}
+      
+      for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      
+      slides[communitySlideIndex-1].classList.add("active");
+      dots[communitySlideIndex-1].classList.add("active");
+      
+      setTimeout(showCommunitySlides, 3000); // Change image every 3 seconds
+    }
+    
+    function currentCommunitySlide(n) {
+      communitySlideIndex = n;
+      let slides = document.querySelectorAll(".slideshow-card .slide");
+      let dots = document.querySelectorAll(".slideshow-card .slide-dot");
+      
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+        dots[i].classList.remove("active");
+      }
+      
+      slides[communitySlideIndex-1].classList.add("active");
+      dots[communitySlideIndex-1].classList.add("active");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Page 2 | Burgess Foundation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --maroon: #800020;
+      --maroon-light: #a04060;
+      --maroon-dark: #600018;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-grey: #e0e0e0;
+    }
+    
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      color: #333;
+      background-color: var(--off-white);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('news/burgess.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Header Styles */
+    .simple-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-left img {
+      height: 50px;
+    }
+
+    .logo-left h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-right a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-right a:hover {
+      color: var(--maroon);
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: white !important;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    /* News Hero Section */
+    .news-hero {
+      background: linear-gradient(rgba(128, 0, 32, 0.8), rgba(128, 0, 32, 0.8)), url('images/news-hero.jpg') center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .news-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .news-hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    /* Poster Section */
+    .poster-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .poster-card {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      background-color: var(--white);
+    }
+
+    .poster-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .poster-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* News Container */
+    .news-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    /* News Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .news-card {
+      background-color: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .news-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .news-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .news-card:hover .news-image img {
+      transform: scale(1.05);
+    }
+
+    .news-content {
+      padding: 1.5rem;
+    }
+
+    .news-content h3 {
+      color: var(--maroon);
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-content p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      color: var(--maroon);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .read-more i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s;
+    }
+
+    .read-more:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 1rem;
+    }
+
+    .page-btn {
+      background-color: var(--maroon);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .page-btn:hover {
+      background-color: var(--maroon-dark);
+    }
+
+    .page-btn.inactive {
+      background-color: var(--light-grey);
+      cursor: not-allowed;
+    }
+
+    /* Footer Styles */
+    .main-footer {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 3rem 2rem 0;
+      margin-top: auto;
+      position: relative;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--white);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--light-grey);
+      padding-left: 5px;
+    }
+
+    .contact-info {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-info li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .contact-info i {
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+
+    .footer-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background-color: rgba(255,255,255,0.2);
+      margin: 20px 0;
+    }
+
+    .copyright {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .simple-header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-right ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+      
+      .news-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .poster-card {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="simple-header">
+    <div class="logo-left">
+      <img src="images/Burgess Foundation logo.png" alt="Burgess Foundation Logo">
+      <h1>Burgess Foundation</h1>
+    </div>
+    <nav class="nav-right">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html" class="active">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a class="donate-btn" href="donate.html">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- News Hero Section -->
+  <section class="news-hero">
+    <h1>More News & Updates</h1>
+    <p>Continuing our journey of impact and community transformation</p>
+  </section>
+
+  <!-- News Container -->
+  <div class="news-container">
+    <div class="news-grid">
+      <!-- News Item 6 -->
+      <div class="news-card">
+        <div class="news-image">
+          <img src="news/mitooma-district-team-750x442.jpg" alt="NGO meeting">
+        </div>
+        <div class="news-content">
+          <h3>A meeting with the Mitooma District NGO Monitoring Committee</h3>
+          <p>A meeting with the Mitooma District NGO Monitoring Committee. The committee members pledged to support Burgess Foundation in identifying vulnerable communities that need support.</p>
+           <a href="news-article.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Item 7 -->
+      <div class="news-card">
+        <div class="news-image">
+          <img src="news/pads-750x442.jpg" alt="Community outreach">
+        </div>
+        <div class="news-content">
+          <h3>A tailor from our community was trained in making the pads.</h3>
+          <p>A tailor from our community was trained in making the pads. She committed to making 30 pads for donation to girls and women in Mitooma District.</p>
+          <a href="news-article.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Item 8 -->
+      <div class="news-card">
+        <div class="news-image">
+          <img src="news/menstrual-hygiene-750x442.jpg" alt="Youth training">
+        </div>
+        <div class="news-content">
+          <h3>Burgess Foundation conducted a community engagement activity in Menstrual Hygiene</h3>
+          <p>Today, Burgess Foundation conducted a community engagement activity in Menstrual Hygiene Management and training on how to make Reusable Sanitary Pads. In Kampala District</p>
+           <a href="news-article.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Item 9 -->
+      <div class="news-card">
+        <div class="news-image">
+          <img src="our work/reuse.jpeg" alt="Elderly support">
+        </div>
+        <div class="news-content">
+          <h3>Burgess Foundation is undertaking a training in making Reusable Sanitary Pads</h3>
+          <p>Burgess Foundation is undertaking a training in making Reusable Sanitary Pads(RUSPs) This intervention is one of many that the foundation is undertaking towards improving menstrual hygiene. #menstrualhealth</p>
+           <a href="news-article.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Item 10 -->
+      <div class="news-card">
+        <div class="news-image">
+          <img src="news/soap-and-book-making-555x397.jpg" alt="School supplies">
+        </div>
+        <div class="news-content">
+          <h3>A team from Burgess Foundation undertook trainings in Soap and Book Making</h3>
+          <p>A team from Burgess Foundation undertook trainings in Soap and Book Making under the sustainability programme. This programme aims to equip community members with skills for income generation.</p>
+           <a href="news-article.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn" onclick="window.location.href='news.html'">Previous</button>
+      <button class="page-btn" onclick="window.location.href='news.html'">1</button>
+      <button class="page-btn inactive">2</button>
+      <button class="page-btn inactive">Next</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Info</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> Lilies Leaf Chambers, Ground Floor, Wing 1B Plot 2B3, Kyambogo Drive–Off</li>
+          <li><i class="fas fa-map-marker-alt"></i> Martyr's Way, Minister's Village, Ntinda, Kampala-Uganda</li>
+          <li><i class="fas fa-map-marker-alt"></i> P.O Box 73474, Clock Tower, Kampala</li>
+          <li><i class="fas fa-phone"></i> +256 703 767 865</li>
+          <li><i class="fas fa-phone"></i> +256 764 846 061</li>
+          <li><i class="fas fa-envelope"></i> info@burgessfoundationug.org</li>
+          <li><i class="fas fa-globe"></i> www.burgessfoundationug.org</li>
+        </ul>
+      </div>
+      
+      <div class="footer-divider"></div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation for news cards when they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+      const newsCards = document.querySelectorAll('.news-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      newsCards.forEach(card => {
+        card.style.opacity = 0;
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+      });
+    });
+  </script>
+
+</body>
+</html>
