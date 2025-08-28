@@ -107,100 +107,74 @@
       margin: 0 auto;
     }
 
-    /* Programs Grid */
-    .programs-grid {
-      max-width: 1200px;
+    /* Horizontal Accordion */
+    .accordion-container {
+      max-width: 1600px;
       margin: 0 auto 3rem;
       padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      display: flex;
+      height: 400px;
+      gap: 10px;
     }
 
-    .program-card {
-      background-color: var(--white);
+    .accordion-item {
+      flex: 1;
       border-radius: 8px;
       overflow: hidden;
+      transition: all 0.5s ease;
+      position: relative;
+      cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
     }
 
-    .program-card:hover {
-      transform: translateY(-10px);
+    .accordion-item:hover {
+      flex: 3;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .full-image-card {
-      position: relative;
-      height: 300px;
+    .accordion-item.active {
+      flex: 3;
     }
 
-    .full-image-card img {
+    .accordion-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
     }
 
-    .overlay-text {
+    .accordion-item:hover .accordion-image {
+      transform: scale(1.05);
+    }
+
+    .accordion-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
       padding: 1.5rem;
       color: var(--white);
+      transition: all 0.5s ease;
     }
 
-    .overlay-text h3 {
+    .accordion-item:hover .accordion-overlay,
+    .accordion-item.active .accordion-overlay {
+      background: linear-gradient(transparent, var(--maroon));
+    }
+
+    .accordion-title {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
     }
 
-    /* Slideshow Program Card */
-    .slideshow-card {
-      position: relative;
-      height: 300px;
-    }
-    
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    
-    .slide.active {
+    .accordion-item:hover .accordion-title,
+    .accordion-item.active .accordion-title {
       opacity: 1;
-    }
-    
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .slide-nav {
-      position: absolute;
-      bottom: 10px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      z-index: 10;
-    }
-    
-    .slide-dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin: 0 5px;
-      background-color: rgba(255,255,255,0.5);
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    
-    .slide-dot.active {
-      background-color: var(--white);
+      transform: translateY(0);
     }
 
     /* Program Details */
@@ -245,6 +219,276 @@
       font-size: 2.5rem;
       color: var(--maroon);
       margin-bottom: 1rem;
+    }
+
+    /* Gallery Section - Redesigned */
+    .gallery-section {
+      max-width: 1600px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-header h2 {
+      color: var(--maroon);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .gallery-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--maroon);
+    }
+
+    .gallery-header p {
+      color: #666;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .album-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .album-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      width: 220px; /* Reduced width to fit 5 in a row */
+      flex-shrink: 0;
+    }
+
+    .album-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .album-image-container {
+      position: relative;
+      height: 180px; /* Reduced height to match new width */
+      overflow: hidden;
+    }
+
+    .album-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .album-card:hover .album-image {
+      transform: scale(1.1);
+    }
+
+    .album-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 15px;
+      color: white;
+    }
+
+    .album-info h3 {
+      margin: 0 0 5px 0;
+      font-size: 1.2rem;
+    }
+
+    .album-info p {
+      margin: 0;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .album-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--maroon);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox-header {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+
+    .lightbox-title {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .lightbox-close {
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content-container {
+      position: relative;
+      width: 90%;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-content {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      transform-origin: center center;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .lightbox-button {
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+
+    .lightbox-footer {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+
+    .lightbox-counter {
+      font-size: 1.1rem;
+    }
+
+    .lightbox-zoom {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .zoom-button {
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 10px;
+      overflow-x: auto;
+      max-width: 100%;
+      justify-content: center;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .thumbnail:hover, .thumbnail.active {
+      opacity: 1;
+      border-color: var(--maroon);
     }
 
     /* Footer */
@@ -315,6 +559,36 @@
       color: var(--white);
     }
 
+    @media (max-width: 1200px) {
+      .album-card {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .album-card {
+        width: 180px;
+      }
+      .album-image-container {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .album-grid {
+        justify-content: space-around;
+      }
+      .album-card {
+        width: 160px;
+      }
+      .album-image-container {
+        height: 140px;
+      }
+      .album-info h3 {
+        font-size: 1.1rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .simple-header {
         flex-direction: column;
@@ -338,8 +612,46 @@
         font-size: 1.2rem;
       }
       
-      .programs-grid {
-        grid-template-columns: 1fr;
+      .accordion-container {
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .accordion-item {
+        height: 80px;
+        margin-bottom: 10px;
+      }
+      
+      .accordion-item:hover,
+      .accordion-item.active {
+        height: 200px;
+        flex: 1;
+      }
+      
+      .accordion-title {
+        opacity: 1;
+        transform: translateY(0);
+        font-size: 1.2rem;
+      }
+      
+      .album-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .album-card {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+      }
+      
+      .album-image-container {
+        height: 200px;
+      }
+      
+      .lightbox-content-container {
+        width: 95%;
+        height: 70%;
       }
       
       .footer-column {
@@ -376,63 +688,45 @@
     <p>Explore the life-changing programs we run for children, women, and communities at large.</p>
   </section>
 
-  <!-- Program Cards -->
-  <section class="programs-grid">
-    <div class="program-card full-image-card">
-      <img src="programs/education.jpg" alt="Education Program" />
-      <div class="overlay-text">
-        <h3>Support To Education</h3>
+  <!-- Horizontal Accordion -->
+  <section class="accordion-container">
+    <!-- Education Program -->
+    <div class="accordion-item" onclick="setActive(this)">
+      <img src="programs/education/_99A4353 2.JPG" alt="Education Program" class="accordion-image">
+      <div class="accordion-overlay">
+        <h3 class="accordion-title">Support To Education</h3>
       </div>
     </div>
 
-    <div class="program-card full-image-card">
-      <img src="programs/martenal.jpg" alt="Health Outreach" />
-      <div class="overlay-text">
-        <h3>Maternal & Child Health</h3>
+    <!-- Maternal & Child Health -->
+    <div class="accordion-item" onclick="setActive(this)">
+      <img src="programs/martenal/martenal.jpg" alt="Maternal Health" class="accordion-image">
+      <div class="accordion-overlay">
+        <h3 class="accordion-title">Maternal & Child Health</h3>
       </div>
     </div>
 
-    <div class="program-card full-image-card">
-      <img src="programs/sanitation.jpeg" alt="WASH Program" />
-      <div class="overlay-text">
-        <h3>Water, Sanitation & Hygiene</h3>
+    <!-- WASH Program -->
+    <div class="accordion-item active" onclick="setActive(this)">
+      <img src="programs/sanitation/sanitation.jpeg" alt="WASH Program" class="accordion-image">
+      <div class="accordion-overlay">
+        <h3 class="accordion-title">Water, Sanitation & Hygiene</h3>
       </div>
     </div>
 
-    <div class="program-card full-image-card">
-      <img src="programs/livelihood.jpeg" alt="Livelihood Program" />
-      <div class="overlay-text">
-        <h3>Livelihood Program</h3>
+    <!-- Livelihood Program -->
+    <div class="accordion-item" onclick="setActive(this)">
+      <img src="programs/livelihood/book.jpeg" alt="Livelihood Program" class="accordion-image">
+      <div class="accordion-overlay">
+        <h3 class="accordion-title">Livelihood Program</h3>
       </div>
     </div>
 
-    <div class="program-card full-image-card">
-      <img src="programs/eldery.JPEG" alt="Elderly Care" />
-      <div class="overlay-text">
-        <h3>Elderly Care Program</h3>
-      </div>
-    </div>
-    
-    <div class="program-card slideshow-card">
-      <!-- Slideshow for Community Development -->
-      <div class="slide active">
-        <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Community Development 1">
-      </div>
-      <div class="slide">
-        <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Community Development 2">
-      </div>
-      <div class="slide">
-        <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Community Development 3">
-      </div>
-     
-      <div class="overlay-text">
-        <h3>Community Development</h3>
-      </div>
-      <div class="slide-nav">
-        <span class="slide-dot active" onclick="currentCommunitySlide(1)"></span>
-        <span class="slide-dot" onclick="currentCommunitySlide(2)"></span>
-        <span class="slide-dot" onclick="currentCommunitySlide(3)"></span>
-        
+    <!-- Elderly Care -->
+    <div class="accordion-item" onclick="setActive(this)">
+      <img src="programs/eldely/eldery.JPEG" alt="Elderly Care" class="accordion-image">
+      <div class="accordion-overlay">
+        <h3 class="accordion-title">Elderly Care Program</h3>
       </div>
     </div>
   </section>
@@ -531,6 +825,117 @@
     </div>
   </section>
 
+  <!-- Gallery Section - Redesigned -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <h2>Our Impact in Action</h2>
+      <p>Explore our program albums showcasing the difference we're making together</p>
+    </div>
+    
+    <div class="album-grid">
+      <!-- Education Album -->
+      <div class="album-card" onclick="openAlbum('education')">
+        <div class="album-image-container">
+          <img src="programs/education/_99A4353 2.JPG" alt="Education Program" class="album-image">
+          <div class="album-overlay">
+            <div class="album-info">
+              <h3>Education Support</h3>
+              <p>Digital learning and teacher training</p>
+            </div>
+          </div>
+          <div class="album-count">10</div>
+        </div>
+      </div>
+      
+      <!-- Maternal Health Album -->
+      <div class="album-card" onclick="openAlbum('maternal')">
+        <div class="album-image-container">
+          <img src="programs/martenal/martenal.jpg" alt="Maternal Health" class="album-image">
+          <div class="album-overlay">
+            <div class="album-info">
+              <h3>Maternal & Child Health</h3>
+              <p>Medical outreach and capacity building</p>
+            </div>
+          </div>
+          <div class="album-count">6</div>
+        </div>
+      </div>
+      
+      <!-- WASH Album -->
+      <div class="album-card" onclick="openAlbum('wash')">
+        <div class="album-image-container">
+          <img src="programs/sanitation/sanitation.jpeg" alt="WASH Program" class="album-image">
+          <div class="album-overlay">
+            <div class="album-info">
+              <h3>WASH Program</h3>
+              <p>Clean water and hygiene initiatives</p>
+            </div>
+          </div>
+          <div class="album-count">4</div>
+        </div>
+      </div>
+      
+      <!-- Livelihood Album -->
+      <div class="album-card" onclick="openAlbum('livelihood')">
+        <div class="album-image-container">
+          <img src="programs/livelihood/book.jpeg" alt="Livelihood Program" class="album-image">
+          <div class="album-overlay">
+            <div class="album-info">
+              <h3>Livelihood Program</h3>
+              <p>VSLA groups and nutrition interventions</p>
+            </div>
+          </div>
+          <div class="album-count">6</div>
+        </div>
+      </div>
+      
+      <!-- Elderly Care Album -->
+      <div class="album-card" onclick="openAlbum('elderly')">
+        <div class="album-image-container">
+          <img src="programs/eldely/eldery.JPEG" alt="Elderly Care" class="album-image">
+          <div class="album-overlay">
+            <div class="album-info">
+              <h3>Elderly Care</h3>
+              <p>Support and healthcare for the elderly</p>
+            </div>
+          </div>
+          <div class="album-count">5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-header">
+      <h2 class="lightbox-title" id="lightbox-title">Album Title</h2>
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    </div>
+    
+    <div class="lightbox-content-container">
+      <img class="lightbox-content" id="lightbox-img">
+      
+      <div class="lightbox-nav">
+        <button class="lightbox-button" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="lightbox-button" onclick="plusSlides(1)">&#10095;</button>
+      </div>
+      
+      <div class="lightbox-zoom">
+        <button class="zoom-button" onclick="zoomIn()"><i class="fas fa-search-plus"></i></button>
+        <button class="zoom-button" onclick="zoomOut()"><i class="fas fa-search-minus"></i></button>
+        <button class="zoom-button" onclick="resetZoom()"><i class="fas fa-sync-alt"></i></button>
+      </div>
+    </div>
+    
+    <div class="lightbox-footer">
+      <div class="lightbox-counter" id="lightbox-counter">1 / 8</div>
+    </div>
+    
+    <div class="thumbnail-container" id="thumbnail-container">
+      <!-- Thumbnails will be inserted here by JavaScript -->
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="main-footer">
     <div class="footer-container">
@@ -541,7 +946,7 @@
           <li><a href="about.html">About Us</a></li>
           <li><a href="programs.html">Programs</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="news.html">News</a></li>
+      <li><a href="news.html">News</a></li>
           <li><a href="donate.html">Donate</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -565,46 +970,209 @@
     </div>
   </footer>
 
-  <script>
-    // Community Development Slideshow
-    let communitySlideIndex = 0;
-    showCommunitySlides();
-    
-    function showCommunitySlides() {
-      let i;
-      let slides = document.querySelectorAll(".slideshow-card .slide");
-      let dots = document.querySelectorAll(".slideshow-card .slide-dot");
-      
-      for (i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
-      }
-      
-      communitySlideIndex++;
-      if (communitySlideIndex > slides.length) {communitySlideIndex = 1}
-      
-      for (i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("active");
-      }
-      
-      slides[communitySlideIndex-1].classList.add("active");
-      dots[communitySlideIndex-1].classList.add("active");
-      
-      setTimeout(showCommunitySlides, 3000); // Change image every 3 seconds
+   <script>
+    // Set active accordion item
+    function setActive(item) {
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+      });
+      item.classList.add('active');
     }
-    
-    function currentCommunitySlide(n) {
-      communitySlideIndex = n;
-      let slides = document.querySelectorAll(".slideshow-card .slide");
-      let dots = document.querySelectorAll(".slideshow-card .slide-dot");
-      
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");
-        dots[i].classList.remove("active");
+
+    // Initialize with third item active
+    document.addEventListener('DOMContentLoaded', function() {
+      const items = document.querySelectorAll('.accordion-item');
+      if (items.length >= 3) {
+        items[2].classList.add('active');
       }
+    });
+
+    // Album data - in a real application, this might come from a database
+    const albums = {
+      education: {
+        title: "Education Support Program",
+        images: [
+          "programs/education/_99A4353 2.JPG",
+          "programs/education/_99A0991.JPG",
+          "programs/education/_99A1020.JPG",
+          "programs/education/FwUAFGeWAAIDtI8.jpg",
+          "programs/education/_99A1034.JPG",
+          "programs/education/_99A1038.JPG",
+          "programs/education/_99A1051.JPG",
+          "programs/education/_99A4334 2.JPG",
+          "programs/education/_99A4336 2.JPG",
+          "programs/education/_99A4348.JPG"
+        ]
+      },
+      maternal: {
+        title: "Maternal & Child Health Program",
+        images: [
+          "programs/martenal/martenal.jpg",
+          "programs/martenal/IMG-20230427-WA0016.jpg",
+          //"programs/martenal/IMG-20240714-WA0035.jpg",
+          "programs/martenal/IMG-20240714-WA0056.jpg",
+          "programs/martenal/WhatsApp Image 2022-05-05 at 1.34.00 PM.jpeg",
+          "programs/martenal/WhatsApp Image 2022-07-19 at 12.53.12 PM.jpeg"
+        ]
+      },
+      wash: {
+        title: "Water, Sanitation & Hygiene Program",
+        images: [
+          "programs/sanitation/sanitation.jpeg",
+          "programs/sanitation/WhatsApp Image 2021-06-28 at 13.08.00.jpeg",
+          "programs/sanitation/WhatsApp Image 2022-04-02 at 3.41.36 PM (1).jpeg",
+          "programs/sanitation/WhatsApp Image 2022-06-14 at 4.40.04 PM.jpeg"
+         
+        ]
+      },
+      livelihood: {
+        title: "Livelihood Program",
+        images: [
+          "programs/livelihood/book.jpeg",
+          "programs/livelihood/F3esA_LWsAABZKs.jpg",
+          "programs/livelihood/Fy-b7_8XsAQabAd.jpg",
+          "programs/livelihood/WhatsApp Image 2022-06-01 at 2.02.13 PM (1).jpeg",
+          "programs/livelihood/WhatsApp Image 2022-06-10 at 12.32.40 PM (1).jpeg",
+          "programs/livelihood/WhatsApp Image 2022-06-10 at 12.32.46 PM.jpeg"
+      ]
+          
+      },
+      elderly: {
+        title: "Elderly Care Program",
+        images: [
+          "programs/eldely/eldery.JPEG",
+          "programs/eldely/CLS-520.JPEG",
+          "programs/eldely/CLS-526.JPEG",
+          "programs/eldely/Screenshot 2025-08-25 091645.png",
+          "programs/eldely/Screenshot 2025-08-25 091739.png"
+          
+        ]
+      }
+    };
+
+    // Lightbox functionality
+    let currentAlbum = null;
+    let slideIndex = 1;
+    let currentZoom = 1;
+
+    function openAlbum(albumKey) {
+      currentAlbum = albums[albumKey];
+      if (!currentAlbum) return;
       
-      slides[communitySlideIndex-1].classList.add("active");
-      dots[communitySlideIndex-1].classList.add("active");
+      slideIndex = 1;
+      currentZoom = 1;
+      updateLightboxTitle();
+      showSlides(slideIndex);
+      generateThumbnails();
+      document.getElementById("lightbox").style.display = "flex";
     }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+      resetZoom();
+    }
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+      resetZoom();
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+      resetZoom();
+    }
+
+    function showSlides(n) {
+      if (!currentAlbum) return;
+      
+      const slides = currentAlbum.images;
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      
+      const lightboxImg = document.getElementById("lightbox-img");
+      lightboxImg.src = slides[slideIndex-1];
+      
+      updateCounter();
+      updateActiveThumbnail();
+    }
+
+    function updateCounter() {
+      if (!currentAlbum) return;
+      document.getElementById("lightbox-counter").textContent = `${slideIndex} / ${currentAlbum.images.length}`;
+    }
+
+    function updateLightboxTitle() {
+      if (!currentAlbum) return;
+      document.getElementById("lightbox-title").textContent = currentAlbum.title;
+    }
+
+    function generateThumbnails() {
+      if (!currentAlbum) return;
+      
+      const container = document.getElementById("thumbnail-container");
+      container.innerHTML = '';
+      
+      currentAlbum.images.forEach((image, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = image;
+        thumb.className = 'thumbnail';
+        if (index === 0) thumb.classList.add('active');
+        thumb.onclick = () => currentSlide(index + 1);
+        container.appendChild(thumb);
+      });
+    }
+
+    function updateActiveThumbnail() {
+      const thumbs = document.querySelectorAll('.thumbnail');
+      thumbs.forEach((thumb, index) => {
+        if (index === slideIndex - 1) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function zoomIn() {
+      if (currentZoom < 3) {
+        currentZoom += 0.5;
+        document.getElementById("lightbox-img").style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    function zoomOut() {
+      if (currentZoom > 1) {
+        currentZoom -= 0.5;
+        document.getElementById("lightbox-img").style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    function resetZoom() {
+      currentZoom = 1;
+      document.getElementById("lightbox-img").style.transform = 'scale(1)';
+    }
+
+    // Close lightbox when clicking outside image
+    window.onclick = function(event) {
+      const lightbox = document.getElementById('lightbox');
+      if (event.target == lightbox) {
+        closeLightbox();
+      }
+    }
+
+    // Keyboard navigation for lightbox
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.style.display === 'flex') {
+        if (event.key === 'Escape') {
+          closeLightbox();
+        } else if (event.key === 'ArrowLeft') {
+          plusSlides(-1);
+        } else if (event.key === 'ArrowRight') {
+          plusSlides(1);
+        }
+      }
+    });
   </script>
 </body>
 </html>

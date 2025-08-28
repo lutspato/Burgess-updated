@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Donate | Burgess Foundation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
   <style>
     :root {
       --maroon: #800020;
@@ -119,8 +120,8 @@
 
     /* Donation options - WIDER CONTAINER */
     .donation-container {
-      max-width: 1400px; /* Increased from 1200px */
-      width: 90%; /* Takes 90% of viewport width */
+      max-width: 1400px;
+      width: 90%;
       margin: 2rem auto;
       padding: 0 1rem;
       position: relative;
@@ -130,10 +131,10 @@
       background-color: rgba(255,255,255,0.95);
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      padding: 2.5rem; /* Increased padding */
+      padding: 2.5rem;
       margin-bottom: 2rem;
       border: 1px solid rgba(0,0,0,0.1);
-      width: 100%; /* Full width of container */
+      width: 100%;
     }
 
     .donation-section h2 {
@@ -141,11 +142,11 @@
       margin-top: 0;
       padding-bottom: 1rem;
       border-bottom: 2px solid var(--light-grey);
-      font-size: 2rem; /* Larger heading */
+      font-size: 2rem;
     }
 
     .donation-method {
-      margin-bottom: 3rem; /* More space between methods */
+      margin-bottom: 3rem;
       padding-bottom: 3rem;
       border-bottom: 1px solid var(--light-grey);
     }
@@ -161,16 +162,16 @@
       display: flex;
       align-items: center;
       gap: 0.8rem;
-      font-size: 1.5rem; /* Larger method title */
+      font-size: 1.5rem;
     }
 
     .donation-method h3 i {
-      font-size: 1.8rem; /* Larger icon */
+      font-size: 1.8rem;
     }
 
     .donation-details {
       background-color: rgba(249, 249, 249, 0.7);
-      padding: 2rem; /* More padding */
+      padding: 2rem;
       border-radius: 8px;
       margin-top: 1.5rem;
       border: 1px solid rgba(0,0,0,0.05);
@@ -179,47 +180,67 @@
     .donation-details h4 {
       margin-top: 0;
       color: var(--maroon);
-      font-size: 1.3rem; /* Larger subheading */
+      font-size: 1.3rem;
     }
 
     .donation-details ul {
       padding-left: 1.5rem;
-      font-size: 1.1rem; /* Slightly larger text */
+      font-size: 1.1rem;
     }
 
     .donation-details li {
-      margin-bottom: 0.8rem; /* More space between list items */
+      margin-bottom: 0.8rem;
     }
 
     .steps {
-      margin-top: 2rem; /* More space */
+      margin-top: 2rem;
     }
 
     .step {
-      margin-bottom: 2rem; /* More space between steps */
+      margin-bottom: 2rem;
     }
 
     .step h4 {
       color: var(--maroon);
       margin-bottom: 0.8rem;
-      font-size: 1.3rem; /* Larger step heading */
+      font-size: 1.3rem;
     }
 
     .step-content {
       background-color: rgba(249, 249, 249, 0.7);
-      padding: 1.5rem; /* More padding */
+      padding: 1.5rem;
       border-radius: 6px;
       border-left: 4px solid var(--maroon);
-      font-size: 1.1rem; /* Slightly larger text */
+      font-size: 1.1rem;
     }
 
     .step-content p {
-      margin: 0.8rem 0; /* More space */
+      margin: 0.8rem 0;
     }
 
     .step-content ul {
       padding-left: 1.5rem;
-      margin: 0.8rem 0; /* More space */
+      margin: 0.8rem 0;
+    }
+
+    /* PayPal Button Container */
+    .paypal-container {
+      margin: 1.5rem 0;
+      max-width: 300px;
+    }
+
+    .custom-amount {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-amount input {
+      padding: 10px;
+      border: 1px solid var(--light-grey);
+      border-radius: 4px;
+      width: 200px;
     }
 
     /* KCB Images */
@@ -228,17 +249,31 @@
       height: auto;
       border: 1px solid #ddd;
       border-radius: 8px;
-      margin: 1.5rem 0; /* More space */
+      margin: 1.5rem 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .visual-guide {
       width: 100%;
-      max-width: 800px; /* Wider visual guide */
-      margin: 3rem auto; /* More space */
+      max-width: 800px;
+      margin: 3rem auto;
       display: block;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Currency Converter */
+    .currency-converter {
+      background-color: rgba(249, 249, 249, 0.7);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .currency-converter p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
     }
 
     /* Footer styles */
@@ -338,12 +373,17 @@
       }
 
       .donation-container {
-        width: 95%; /* Even wider on mobile */
+        width: 95%;
         padding: 0 0.5rem;
       }
 
       .donation-section {
         padding: 1.5rem;
+      }
+      
+      .custom-amount {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -380,6 +420,7 @@
     <div class="donation-section">
       <h2>Donation Methods</h2>
       
+      <!-- KCB Mobile Banking Option (now first) -->
       <div class="donation-method">
         <h3><i class="fas fa-mobile-alt"></i> KCB Mobile Banking</h3>
         <p>Make instant donations using KCB Mobile Banking service</p>
@@ -426,28 +467,39 @@
         </div>
       </div>
       
+      <!-- PayPal Payment Option -->
       <div class="donation-method">
-        <h3><i class="fas fa-university"></i> Bank Transfer</h3>
-        <p>Make a direct bank transfer to our account</p>
+        <h3><i class="fab fa-paypal"></i> PayPal</h3>
+        <p>Make secure donations using PayPal with credit/debit cards or your PayPal account</p>
         
         <div class="donation-details">
-          <h4>Bank Account Details:</h4>
-          <ul>
-            <li><strong>Account Name:</strong> BURGESS FOUNDATION LIMITED</li>
-            <li><strong>Account Number:</strong> 2311255576</li>
-            <li><strong>Bank Name:</strong> KCB BANK UGANDA LIMITED</li>
-            <li><strong>SWIFT Code:</strong> KCBLUGKA</li>
-            <li><strong>Currency:</strong> UGX</li>
-          </ul>
+          <h4>Make a Donation with PayPal:</h4>
           
-          <h4>Bank Address:</h4>
-          <p>Commercial Plaza Complex, 7 Kampala Road, Kampala</p>
+          <div class="custom-amount">
+            <span>Enter amount (USD):</span>
+            <input type="number" id="paypalAmount" placeholder="Amount in USD" min="1" step="0.01">
+          </div>
           
-          <h4>Beneficiary Address:</h4>
-          <p>Lilly Leaf Chambers, Ground Floor, Wing 1B, Plot 2B3, Kyambogo Close Drive</p>
+          <div class="currency-converter">
+            <p><strong>Note:</strong> PayPal processes donations in USD. Approximate equivalent:</p>
+            <p id="currencyConversion">1 USD ≈ 3700 UGX</p>
+          </div>
           
-          <h4>Postal Address:</h4>
-          <p>P.O Box 73474, Clock Tower, Kampala</p>
+          <div class="paypal-container" id="paypal-button-container"></div>
+          
+          <div class="steps">
+            <div class="step">
+              <h4>Benefits:</h4>
+              <div class="step-content">
+                <ul>
+                  <li><strong>Secure payments</strong> with PayPal's encryption</li>
+                  <li><strong>Multiple payment options</strong> including credit/debit cards</li>
+                  <li><strong>Instant payment confirmation</strong> and receipt</li>
+                  <li><strong>International donations</strong> accepted from anywhere</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -485,5 +537,87 @@
       <p>&copy; 2025 Burgess Foundation. All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- PayPal Integration Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const paypalAmountInput = document.getElementById('paypalAmount');
+      let donationAmount = 10.00; // Default amount
+      
+      // Amount input handler
+      paypalAmountInput.addEventListener('input', function() {
+        donationAmount = parseFloat(this.value) || 10.00;
+        updateCurrencyConversion(donationAmount);
+        renderPayPalButton();
+      });
+      
+      // Update currency conversion display
+      function updateCurrencyConversion(amount) {
+        const ugxAmount = (amount * 3700).toLocaleString();
+        document.getElementById('currencyConversion').textContent = 
+          `${amount} USD ≈ ${ugxAmount} UGX`;
+      }
+      
+      // Initialize currency conversion
+      updateCurrencyConversion(donationAmount);
+      
+      // Render PayPal button
+      function renderPayPalButton() {
+        // Clear previous button
+        document.getElementById('paypal-button-container').innerHTML = '';
+        
+        paypal.Buttons({
+          style: {
+            color: 'gold',
+            shape: 'rect',
+            label: 'pay',
+            height: 40
+          },
+          
+          createOrder: function(data, actions) {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: donationAmount.toFixed(2),
+                  currency_code: "USD"
+                },
+                description: "Donation to Burgess Foundation"
+              }]
+            });
+          },
+          
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              alert('Thank you for your donation, ' + details.payer.name.given_name + '!');
+              console.log('Transaction completed by ' + details.payer.name.given_name);
+              
+              // Here you would typically send this data to your server
+              // For example: 
+              // fetch('/save-transaction', {
+              //   method: 'POST',
+              //   headers: {
+              //     'Content-Type': 'application/json'
+              //   },
+              //   body: JSON.stringify({
+              //     orderID: data.orderID,
+              //     payerID: data.payerID,
+              //     paymentID: details.id,
+              //     amount: donationAmount
+              //   })
+              // });
+            });
+          },
+          
+          onError: function(err) {
+            console.error('PayPal Checkout onError', err);
+            alert('An error occurred with the PayPal payment. Please try again or use an alternative payment method.');
+          }
+        }).render('#paypal-button-container');
+      }
+      
+      // Initial render
+      renderPayPalButton();
+    });
+  </script>
 </body>
 </html>

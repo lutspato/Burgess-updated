@@ -44,6 +44,53 @@
       position: relative;
     }
 
+    .logo-social {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-social img {
+      height: 50px;
+    }
+
+    .logo-social h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-style: italic;
+      color: var(--maroon);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-icons a {
+      color: var(--maroon);
+    }
+
+    .nav-right ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .donate-btn {
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .donate-btn:hover {
+      background-color: var(--maroon-dark);
+      color: var(--white);
+    }
+
     /* SLIDESHOW HERO SECTION */
     .slideshow-hero {
       position: relative;
@@ -90,213 +137,6 @@
     .hero-content p {
       font-size: 1.5rem;
       max-width: 800px;
-    }
-
-    /* UPDATED HORIZONTAL ACCORDION SECTION */
-    .horizontal-accordion-section {
-      padding: 4rem 0;
-      text-align: center;
-      background-color: var(--off-white);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .horizontal-accordion-container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0;
-      position: relative;
-    }
-
-    .horizontal-accordion {
-      display: flex;
-      height: 500px;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      position: relative;
-      align-items: center;
-      gap: 10px;
-      scroll-behavior: smooth;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .horizontal-accordion::-webkit-scrollbar {
-      display: none;
-    }
-
-    .accordion-item {
-      position: relative;
-      flex: 0 0 20%;
-      height: 80%;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      filter: brightness(0.7);
-      border-radius: 10px;
-      overflow: hidden;
-      scroll-snap-align: start;
-      min-width: 200px;
-    }
-
-    .accordion-item.active, 
-    .accordion-item:hover {
-      flex: 0 0 60%;
-      height: 90%;
-      filter: brightness(1);
-    }
-
-    .image-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .accordion-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .accordion-item.active img, 
-    .accordion-item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* SIMPLIFIED CONTENT - ONLY LEARN MORE LINK */
-    .accordion-content {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .accordion-item.active .accordion-content,
-    .accordion-item:hover .accordion-content {
-      opacity: 1;
-    }
-
-    .accordion-button {
-      display: inline-block;
-      padding: 8px 16px;
-      background: transparent;
-      color: var(--white);
-      border: 2px solid var(--white);
-      border-radius: 4px;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-
-    .accordion-button:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    /* ENHANCED NAVIGATION ARROWS */
-    .accordion-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    .accordion-nav button {
-      pointer-events: all;
-      background: var(--maroon);
-      border: none;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin: 0 30px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .accordion-nav button:hover {
-      background: var(--maroon-dark);
-      transform: scale(1.1);
-    }
-
-    .accordion-nav i {
-      font-size: 1.8rem;
-      color: var(--white);
-    }
-
-    .accordion-nav button:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
-    .accordion-nav button:disabled:hover {
-      transform: none;
-      background: var(--maroon);
-    }
-
-    /* Rest of your existing CSS */
-    .logo-social {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo-social img {
-      height: 50px;
-    }
-
-    .logo-social h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      font-style: italic;
-      color: var(--maroon);
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 0.8rem;
-    }
-
-    .social-icons a {
-      color: var(--maroon);
-    }
-
-    .nav-right ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    .donate-btn {
-      background-color: var(--maroon);
-      color: var(--white);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-
-    .donate-btn:hover {
-      background-color: var(--maroon-dark);
-      color: var(--white);
     }
 
     section {
@@ -459,21 +299,68 @@
       background-color: var(--maroon-dark);
     }
 
-    /* VIDEO SECTION STYLES */
-    .video-section {
+    /* VIDEO SECTION STYLES - UPDATED */
+    .video-about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       padding: 4rem 2rem;
-      text-align: center;
+      max-width: 1600px;
+      margin: 0 auto;
     }
 
     .video-container {
-      max-width: 800px;
-      margin: 0 auto;
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
     }
 
     .video-container video {
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .about-container {
+      flex: 1;
+      min-width: 300px;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .about-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--maroon);
+    }
+
+    .about-container h3 {
+      font-size: 1.8rem;
+      color: var(--maroon-light);
+      margin-bottom: 1rem;
+    }
+
+    .about-container p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .discover-more-btn {
+      display: inline-block;
+      background-color: var(--maroon);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin-top: 1rem;
+    }
+
+    .discover-more-btn:hover {
+      background-color: var(--maroon-dark);
     }
 
     /* PARTNERS SECTION */
@@ -501,6 +388,106 @@
 
     .partner-logo:hover {
       filter: grayscale(0%);
+    }
+
+    /* NEWS SECTION STYLES */
+    .news-section {
+      padding: 4rem 2rem;
+      background-color: var(--white);
+      text-align: center;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-align: left;
+      border: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .news-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-date {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-content h3 {
+      color: #333;
+      margin: 0 0 1rem 0;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+
+    .news-content p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .read-more {
+      display: inline-block;
+      color: var(--maroon);
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .read-more:hover {
+      color: var(--maroon-dark);
+      text-decoration: underline;
+    }
+
+    .view-all-container {
+      margin-top: 2rem;
+    }
+
+    .view-all-btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--maroon);
+      color: white;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .view-all-btn:hover {
+      background-color: var(--maroon-dark);
+      transform: translateY(-2px);
     }
 
     /* FOOTER STYLES */
@@ -562,30 +549,6 @@
       margin-right: 10px;
       width: 20px;
       text-align: center;
-    }
-
-    /* FOOTER PHOTO COLLAGE */
-    .footer-collage {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: 5px;
-      width: 100%;
-      max-width: 300px;
-      margin-top: 1rem;
-    }
-
-    .footer-collage img {
-      width: 100%;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 3px;
-      transition: transform 0.3s ease;
-    }
-
-    .footer-collage img:hover {
-      transform: scale(1.1);
-      z-index: 1;
     }
 
     .footer-content-wrapper {
@@ -655,46 +618,20 @@
         min-width: 100%;
       }
 
-      .horizontal-accordion {
-        flex-direction: column;
-        height: auto;
-        gap: 5px;
-      }
-      
-      .accordion-item {
-        height: 250px;
-        width: 90%;
-        flex: 1;
-        min-width: auto;
-      }
-      
-      .accordion-item.active,
-      .accordion-item:hover {
-        height: 300px;
-        width: 90%;
-        flex: 1;
-      }
-
-      .accordion-content {
-        opacity: 1;
-      }
-
-      .footer-collage {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        max-width: 100%;
-      }
-
-      .footer-collage img {
-        height: 50px;
+      .news-grid {
+        grid-template-columns: 1fr;
       }
 
       .footer-content-wrapper {
         flex-direction: column;
       }
-      
-      .accordion-nav {
-        display: none;
+
+      .video-about-section {
+        flex-direction: column;
+      }
+
+      .video-container, .about-container {
+        min-width: 100%;
       }
     }
   </style>
@@ -830,160 +767,73 @@
   </div>
 </section>
 
-  <!-- VIDEO SECTION -->
-  <section class="video-section">
-    <h2>Our Story</h2>
+  <!-- UPDATED VIDEO AND ABOUT SECTION -->
+  <section class="video-about-section">
     <div class="video-container">
       <video controls poster="imagessss/4.png">
         <source src="about us video/BFU intro video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-  </section>
-
-  <!-- SIMPLIFIED HORIZONTAL ACCORDION SECTION -->
-  <section class="horizontal-accordion-section">
-    <h2 class="section-title">Our Key Focus Areas</h2>
-    <p class="section-subtitle">See our programs in action through these impactful images</p>
-    
-    <div class="horizontal-accordion-container">
-      <div class="horizontal-accordion">
-       
-        <div class="accordion-item active">
-          <div class="image-container">
-            <img src="our work/CLS-419.JPEG" alt="Education Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#education" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-        
-        
-        <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/CLS-609.JPEG" alt="Maternal Health">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#health" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-        
-        
-        <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/F3pQYD0W4AA2dED.jpg" alt="Safe Water Access">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#water" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-        
-        
-        <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/FvmK48gWcAEQgIh.jpg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/IMG-20230607-WA0006.jpg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/IMG-20240714-WA0066.jpg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2021-05-24 at 15.27.06.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2021-06-28 at 13.10.32.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2021-10-08 at 09.43.08.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         <div class="accordion-item">
-          <div class="image-container">
-            <img src="our work/WhatsApp Image 2022-10-12 at 09.17.36.jpeg" alt="Additional Program">
-          </div>
-          <div class="accordion-content">
-            <a href="programs.html#community" class="accordion-button">Learn More</a>
-          </div>
-        </div>
-
-         
-        
-      </div>
-      
-      <!-- Enhanced Navigation arrows -->
-      <div class="accordion-nav">
-        <button id="prev-slide" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-        <button id="next-slide" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-      </div>
+    <div class="about-container">
+      <h2>GET TO KNOW US</h2>
+      <p>Burgess Foundation (BF), a Ugandan NGO registered in 2021, is dedicated to empowering vulnerable communities through maternal health, girl child education, and elderly care. By partnering with communities, government, NGOs, and the private sector, BF delivers sustainable, culturally relevant interventions that improve livelihoods and align with national development priorities.</p>
+      <h3>OUR VALUES ARE: </h3>
+      <p>1. Integrity <br>
+      2. Equality <br>
+      3. Transparency <br>
+      4.Voluntarism <br>
+     </p>
+      <a href="about.html" class="discover-more-btn">DISCOVER MORE</a>
     </div>
   </section>
 
+  <!-- NEWS SECTION -->
+  <section class="news-section">
+    <h2>News & Articles</h2>
+    <p>Stay updated with our latest insights and stories</p>
+    
+    <div class="news-grid">
+        <!-- Article 1 -->
+        <article class="news-card">
+            <img src="news/nyakatsiro-health-centre-750x442.jpg" alt="Health Centre" class="news-image">
+            <div class="news-content">
+                <h3>Meeting at Nyakatsiro Health Centre</h3>
+                <p>Burgess Foundation held a meeting at Nyakatsiro health centre where challenges were raised majorly poor feeding, inability to pay bills which results into elder abandonment at the health centre for days.During the meeting, we identified several key issues affecting elderly care in the district and proposed solutions including community support programs and fundraising initiatives to help cover medical bills..</p>
+                <a href="news-article.html#article1" class="read-more">READ MORE</a>
+            </div>
+        </article>
+        
+        <!-- Article 2 -->
+        <article class="news-card">
+            <img src="news/photo_uganda01.jpg" alt="Signing MOU" class="news-image">
+            <div class="news-content">
+                <h3>Signing of the MOU</h3>
+                <p>In February 2024, a signing ceremony was held in Kampala, the capital of Uganda, between Watanabe of Sprix's Overseas Business Division and Ketty Ramaro, Permanent Secretary of the Ministry of Education. The ceremony was attended by approximately 10 people, including Mulindwa Ismael, Director General of the Basic and Secondary Education Bureau of the Ministry of Education. It was confirmed that the Ministry of Education and Sprix will work together to encourage public and private schools across the country to take the TOFAS exam.</p>
+                <a href="news-article.html#article2" class="read-more">READ MORE</a>
+            </div>
+        </article>
+        
+        <!-- Article 3 -->
+        <article class="news-card">
+            <img src="news/campaign04a.jpg" alt="Book" class="news-image">
+            <div class="news-content">
+                <h3>Book Donation Handover</h3>
+                <p>The books raised from the #buyabook fundraiser were handed over to the PTA chairman, Head teacher and his Deputy at Nyakashojwa PS, Mitooma District. Burgess Foundation Team conducted a training in Menstrual Hygiene at Nyakashojwa Primary School.This donation included 500 textbooks and 200 storybooks that will help improve literacy rates in the school. The head teacher expressed gratitude for the donation which will benefit over 300 students.</p>
+                <a href="news-article.html#article3" class="read-more">READ MORE</a>
+            </div>
+        </article>
+    </div>
+    
+    <div class="view-all-container">
+        <a href="news-article.html" class="view-all-btn">View All Articles</a>
+    </div>
+  </section>
+
+
   <!-- PARTNERS SECTION -->
   <section class="partners-section">
-    <h2>PARTNERS IN DEVELOPMENT</h2>
+    <h2>MEET OUR PARTNERS</h2>
     <div class="partners-container">
       <img src="partners/download-1.png" alt="East Africa Philanthropy Network" class="partner-logo">
       <img src="partners/download.png" alt="GlobalGiving" class="partner-logo">
@@ -1008,23 +858,19 @@
       </div>
       
       <div class="footer-column footer-middle">
-        <h3>Photo Gallery</h3>
-        <div class="footer-collage">
-          <img src="our work/WhatsApp Image 2022-10-12 at 09.17.36.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2022-08-11 at 12.59.57 PM.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2022-07-25 at 1.31.21 PM.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2022-05-26 at 10.15.31 AM.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2022-02-25 at 1.07.46 PM.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-11-24 at 13.09.54.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-10-08 at 09.43.08.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-08-17 at 10.54.35.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-08-12 at 11.10.04 (1).jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-08-11 at 16.30.52.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-06-28 at 13.10.32.jpeg" alt="Foundation work">
-          <img src="our work/WhatsApp Image 2021-05-24 at 15.27.06.jpeg" alt="Foundation work">
-          <img src="our work/IMG-20240714-WA0066.jpg" alt="Foundation work">
-          <img src="our work/IMG-20230607-WA0006.jpg" alt="Foundation work">
-          <img src="our work/FvmK48gWcAEQgIh.jpg" alt="Foundation work">
+        <h3>Stay Connected</h3>
+        <div class="newsletter-form">
+            <p>Subscribe to our newsletter</p>
+            <form>
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       
@@ -1091,80 +937,6 @@
           }
         }
       });
-      
-      // Enhanced Accordion slider functionality
-      const accordionItems = document.querySelectorAll('.accordion-item');
-      const prevBtn = document.getElementById('prev-slide');
-      const nextBtn = document.getElementById('next-slide');
-      let currentAccordion = 0;
-      
-      function updateAccordion() {
-        accordionItems.forEach((item, index) => {
-          if(index === currentAccordion) {
-            item.classList.add('active');
-          } else {
-            item.classList.remove('active');
-          }
-        });
-        
-        // Update arrow states
-        prevBtn.disabled = currentAccordion === 0;
-        nextBtn.disabled = currentAccordion === accordionItems.length - 1;
-      }
-      
-      prevBtn.addEventListener('click', () => {
-        currentAccordion = Math.max(0, currentAccordion - 1);
-        updateAccordion();
-        scrollToCurrentItem();
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        currentAccordion = Math.min(accordionItems.length - 1, currentAccordion + 1);
-        updateAccordion();
-        scrollToCurrentItem();
-      });
-      
-      function scrollToCurrentItem() {
-        const container = document.querySelector('.horizontal-accordion');
-        const item = accordionItems[currentAccordion];
-        container.scrollTo({
-          left: item.offsetLeft - container.offsetLeft - (container.offsetWidth - item.offsetWidth) / 2,
-          behavior: 'smooth'
-        });
-      }
-      
-      // Auto-rotate accordion items
-      let autoRotateInterval = setInterval(() => {
-        currentAccordion = (currentAccordion + 1) % accordionItems.length;
-        updateAccordion();
-        scrollToCurrentItem();
-      }, 5000);
-      
-      // Pause auto-rotation on hover
-      const accordionContainer = document.querySelector('.horizontal-accordion-container');
-      accordionContainer.addEventListener('mouseenter', () => {
-        clearInterval(autoRotateInterval);
-      });
-      
-      accordionContainer.addEventListener('mouseleave', () => {
-        autoRotateInterval = setInterval(() => {
-          currentAccordion = (currentAccordion + 1) % accordionItems.length;
-          updateAccordion();
-          scrollToCurrentItem();
-        }, 5000);
-      });
-      
-      // Hover functionality for accordion items
-      accordionItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          const index = Array.from(accordionItems).indexOf(item);
-          currentAccordion = index;
-          updateAccordion();
-        });
-      });
-      
-      // Initialize
-      updateAccordion();
     });
   </script>
 </body>
