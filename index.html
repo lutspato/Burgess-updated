@@ -644,10 +644,10 @@
       <div>
         <h1>Burgess Foundation</h1>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-x-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/theburgessfoundation" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/burgess_fdtn" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="http://instagram.com/theburgessfoundation/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/burgess-foundation-uganda/posts/?feedView=all" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
     </div>
@@ -862,16 +862,16 @@
         <h3>Stay Connected</h3>
         <div class="newsletter-form">
             <p>Subscribe to our newsletter</p>
-            <form>
-                <input type="email" placeholder="Your email address" required>
+            <form id="newsletter-form">
+                <input type="email" id="newsletter-email" placeholder="Your email address" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/theburgessfoundation" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/burgess_fdtn" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="http://instagram.com/theburgessfoundation/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/burgess-foundation-uganda/posts/?feedView=all" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       
@@ -938,6 +938,20 @@
           }
         }
       });
+    });
+
+    // Newsletter subscription functionality
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('newsletter-email').value;
+      
+      // Here you would typically send this data to a server
+      // For demonstration, we'll just show an alert
+      alert(`Thank you for subscribing with: ${email}\nYou'll receive our newsletter soon!`);
+      
+      // Reset the form
+      document.getElementById('newsletter-form').reset();
     });
   </script>
 </body>
